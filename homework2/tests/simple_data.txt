@@ -1,0 +1,8 @@
+hello!
+this is a simple_data test file.
+it has some punctuation chars: ,,,;;_
+and only 3 non-ascii chars:
+\u00e4
+\u00fc
+\u00fc
+have a good day!
