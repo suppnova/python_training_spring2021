@@ -1,5 +1,5 @@
 import string
-from typing import List, Iterable
+from typing import Iterable, List
 
 import pytest
 

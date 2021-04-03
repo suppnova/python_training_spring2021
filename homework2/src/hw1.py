@@ -6,7 +6,8 @@ Given a file containing text. Complete using only default collections:
     4) Count every non ascii char
     5) Find most common non ascii char for document
 """
-
+from collections import defaultdict
+from operator import itemgetter
 from string import punctuation
 from typing import Dict, List, Optional
 
@@ -24,17 +25,16 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
         for word in line.split():
             word = word.strip(punctuation)
             words[word] = len(set(word))
-    return sorted(words, key=words.__getitem__, reverse=True)[:10]
+    return [
+        word for word, _ in sorted(words.items(), key=itemgetter(1), reverse=True)[:10]
+    ]
 
 
 def count_symbols(file_path: str) -> Dict[str, int]:
-    symbols = {}
+    symbols = defaultdict(int)
     for line in read_by_line(file_path):
         for symbol in line:
-            if symbol not in symbols:
-                symbols[symbol] = 1
-            else:
-                symbols[symbol] += 1
+            symbols[symbol] += 1
     return symbols
 
 
@@ -45,29 +45,24 @@ def get_rarest_char(file_path: str) -> str:
 
 def count_punctuation_chars(file_path: str) -> int:
     counter = 0
-    symbols = count_symbols(file_path)
-    for symbol in symbols:
+    for symbol, amount in count_symbols(file_path).items():
         if symbol in punctuation:
-            counter += symbols[symbol]
+            counter += amount
     return counter
 
 
 def count_non_ascii_chars(file_path: str) -> int:
     counter = 0
-    symbols = count_symbols(file_path)
-    for symbol in symbols:
+    for symbol, amount in count_symbols(file_path).items():
         if not symbol.isascii():
-            counter += symbols[symbol]
+            counter += amount
     return counter
 
 
 def get_most_common_non_ascii_char(file_path: str) -> Optional[str]:
-    amount = 0
-    symbols = count_symbols(file_path)
-    for symbol in symbols:
-        if not symbol.isascii() and symbols[symbol] > amount:
-            amount = symbols[symbol]
+    amount, char = 0, None
+    for symbol, count in count_symbols(file_path).items():
+        if not symbol.isascii() and count > amount:
+            amount = count
             char = symbol
-    if amount == 0:
-        return None
     return char
