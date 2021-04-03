@@ -19,8 +19,8 @@ def main():
     np = cpu_count()
     print(f"\nMultiprocessing calculation on {np} cores")
 
-    with Pool(60) as pool:
-        count = pool.map(slow_calculate, range(501))
+    with Pool(np) as pool:
+        count = pool.map(slow_calculate, range(10))
         total = sum(count)
 
         end = timer()

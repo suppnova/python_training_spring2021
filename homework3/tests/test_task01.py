@@ -1,11 +1,14 @@
-from homework3.src.task01 import func
+from unittest.mock import Mock
+
+from homework3.src.task01 import cache
 
 
 def test_cached_func():
-    first_call = func(100, 200)
-    second_call = func(100, 200)
-    _ = func(100, 200)
-
-    fourth_call = func(100, 200)
-
-    assert first_call is second_call and first_call is not fourth_call
+    func = Mock()
+    cached_func = cache(times=2)(func)
+    cached_func()
+    cached_func()
+    cached_func()
+    assert func.call_count == 1
+    cached_func()
+    assert func.call_count == 2
