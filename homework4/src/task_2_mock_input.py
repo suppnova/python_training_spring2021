@@ -27,15 +27,14 @@ You will learn:
 """
 
 import requests
+from requests.exceptions import ConnectionError, MissingSchema
 
 
 def count_dots_on_i(url: str) -> int:
-    counter = 0
     try:
         html_input = requests.get(url)
-        for char in html_input.text:
-            if char == "i":
-                counter += 1
-        return counter
-    except Exception:
-        raise ValueError(f"Unreachable {url}")
+        return html_input.text.count("i")
+    except ConnectionError:
+        raise ConnectionError(f"Failed to establish connection {url}")
+    except MissingSchema:
+        raise MissingSchema(f"Invalid URL {url}")

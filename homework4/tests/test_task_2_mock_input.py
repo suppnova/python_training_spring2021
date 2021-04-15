@@ -2,6 +2,7 @@ from collections import namedtuple
 from unittest.mock import patch
 
 import pytest
+import requests
 
 from homework4.src.task_2_mock_input import count_dots_on_i
 
@@ -16,7 +17,11 @@ def test_count_dots(data: str, expected_result: int):
         assert count_dots_on_i("url") == expected_result
 
 
-@pytest.mark.parametrize("url", [None, 10])
-def test_count_dots_on_i_for_value_error(url: str):
-    with pytest.raises(ValueError):
-        count_dots_on_i(url)
+def test_count_dots_on_i_connection_error():
+    with pytest.raises(requests.exceptions.ConnectionError):
+        count_dots_on_i("http://goglya.com")
+
+
+def test_count_dots_on_i_missing_schema():
+    with pytest.raises(requests.exceptions.MissingSchema):
+        count_dots_on_i("google.com")

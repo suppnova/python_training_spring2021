@@ -25,13 +25,9 @@ from typing import Generator, List
 
 
 def fizzbuzz(n: int) -> Generator[str, None, None]:
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("Input number should be integer and not less than 0")
     for i in range(1, n + 1):
         yield "fizz" * (i % 3 == 0) + "buzz" * (i % 5 == 0) + str(i) * (
             i % 3 != 0 and i % 5 != 0
         )
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()

@@ -24,33 +24,24 @@ You will learn:
 *** https://docs.python.org/3/tutorial/errors.html#handling-exceptions
 **** https://docs.python.org/3/tutorial/errors.html#raising-exceptions
 """
-
-from collections import namedtuple
-
-CastResult = namedtuple("CastResult", ["status", "number"])
+from typing import Union
 
 
-def in_interval(value):
-    return 1 <= value < 3
-
-
-def cast_to_complex(value):
-    complex(value)
-
-
-def cast_to_float(value):
+def cast_to_float(number) -> Union[float, bool]:
     try:
-        return CastResult(True, float(value))
+        return float(number)
     except ValueError:
-        return CastResult(False, -1)
+        return False
 
 
 def read_magic_number(path: str) -> bool:
     try:
         with open(path, "r") as fi:
             first_line = fi.readline().strip()
-            cast_to_complex(first_line)
-            result, number = cast_to_float(first_line)
-            return result and in_interval(number)
-    except (ValueError, FileNotFoundError):
-        raise ValueError
+            complex(first_line)
+            number = cast_to_float(first_line)
+            return number and 1 <= number < 3
+    except ValueError:
+        raise ValueError("First line is not a number (can't be converted to complex)")
+    except FileNotFoundError:
+        raise

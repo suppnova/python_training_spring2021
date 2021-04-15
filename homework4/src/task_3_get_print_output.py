@@ -27,6 +27,8 @@ import sys
 
 
 def my_precious_logger(text: str):
+    if not isinstance(text, str):
+        raise ValueError(f"Expected type 'str', got {type(text)} instead")
     if text.startswith("error"):
         print(text, file=sys.stderr)
     else:

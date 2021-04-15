@@ -3,13 +3,14 @@ Write a function that takes a number N as an input and returns N FizzBuzz number
 Write a doctest for that function.
 Write a detailed instruction how to run doctests**.
 
-That how first steps for the instruction may look like:
- - Install Python 3.8 (https://www.python.org/downloads/)
+Detailed instruction how to run doctests:
+ - Install Python 3.9 (https://www.python.org/downloads/)
  - Install pytest `pip install pytest`
- - Clone the repository <path your repository>
- - Checkout branch <your branch>
+ - Clone the repository https://github.com/suppnova/python_training_spring_2021
+ - Checkout branch homework-4
  - Open terminal
- - ...
+ - Open directory with file task_4_doctest.py
+ - Type 'python -m doctest -v task_4_doctest.py' in terminal
 
 Definition of done:
  - function is created
@@ -37,6 +38,8 @@ from typing import List
 
 
 def fizzbuzz(n: int) -> List[str]:
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("Input number should be integer and not less than 0")
     fizz_buzz_numbers = []
     for i in range(1, n + 1):
         if i % 15 == 0:
@@ -48,20 +51,3 @@ def fizzbuzz(n: int) -> List[str]:
         else:
             fizz_buzz_numbers.append(str(i))
     return fizz_buzz_numbers
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-
-"""Detailed instruction how to run doctests:
- - Install Python 3.9 (https://www.python.org/downloads/)
- - Install pytest `pip install pytest`
- - Clone the repository https://github.com/suppnova/python_training_spring_2021
- - Checkout branch homework-4
- - Open terminal
- - Open directory with file task_4_doctest.py (type 'cd homework4\src')
- - Run file in the required directory (type 'task_4_doctest.py -v')
- """
