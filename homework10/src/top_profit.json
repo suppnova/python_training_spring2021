@@ -1,0 +1,82 @@
+[
+    {
+        "code": "L Brands Inc",
+        "name": "LB",
+        "price": 4864.99,
+        "P/E": 11.45,
+        "growth": "382.01%",
+        "potential profit": "671.7%"
+    },
+    {
+        "code": "Tesla",
+        "name": "TSLA",
+        "price": 53811.37,
+        "P/E": 299.31,
+        "growth": "390.03%",
+        "potential profit": "568.14%"
+    },
+    {
+        "code": "Enphase Energy Inc",
+        "name": "ENPH",
+        "price": 11045.05,
+        "P/E": 125.98,
+        "growth": "285.04%",
+        "potential profit": "566.95%"
+    },
+    {
+        "code": "Freeport-McMoRan Inc",
+        "name": "FCX",
+        "price": 2668.14,
+        "P/E": 46.28,
+        "growth": "358.46%",
+        "potential profit": "435.62%"
+    },
+    {
+        "code": "Gap Inc.",
+        "name": "GPS",
+        "price": 2408.17,
+        "P/E": -11.51,
+        "growth": "291.51%",
+        "potential profit": "408.26%"
+    },
+    {
+        "code": "Invesco Ltd",
+        "name": "IVZ",
+        "price": 1943.72,
+        "P/E": 8.72,
+        "growth": "193.16%",
+        "potential profit": "324.29%"
+    },
+    {
+        "code": "Discovery Communications Inc (A)",
+        "name": "DISCA",
+        "price": 2680.31,
+        "P/E": 9.18,
+        "growth": "68.65%",
+        "potential profit": "321.01%"
+    },
+    {
+        "code": "Tapestry",
+        "name": "TPR",
+        "price": 3305.91,
+        "P/E": 13.55,
+        "growth": "203.88%",
+        "potential profit": "308.51%"
+    },
+    {
+        "code": "Discovery Communications Inc (C)",
+        "name": "DISCK",
+        "price": 2273.62,
+        "P/E": 8.03,
+        "growth": "59.65%",
+        "potential profit": "297.02%"
+    },
+    {
+        "code": "Occidental Petroleum Corp.",
+        "name": "OXY",
+        "price": 1701.23,
+        "P/E": -4.41,
+        "growth": "82.45%",
+        "potential profit": "281.69%"
+    }
+]
