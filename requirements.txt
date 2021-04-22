@@ -2,3 +2,11 @@ pytest
 pytest-sugar
 black==20.8b1
 isort
+aiohttp
+numpy
+pycbrf
+bs4
+
+requests
+pandas
+beautifulsoup4
