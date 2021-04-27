@@ -61,14 +61,14 @@ def test_teacher_check_homework_result(
 
 
 def test_teacher_homework_done_dict_unit():
-    assert Teacher.homework_done[oop_hw] == "I have done oop_hw"
+    assert Teacher.homework_done[oop_hw] == ["I have done oop_hw"]
 
 
 def test_reset_one_result():
     Teacher.reset_results(oop_hw)
-    assert Teacher.homework_done[oop_hw] is None
+    assert len(Teacher.homework_done[oop_hw]) == 0
 
 
 def test_reset_all_results():
     Teacher.reset_results()
-    assert Teacher.homework_done == defaultdict()
+    assert Teacher.homework_done == defaultdict(list)

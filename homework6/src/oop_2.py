@@ -57,10 +57,10 @@ class Homework:
     def __init__(self, text: str, deadline: timedelta):
         self.text = text
         self.deadline = deadline
-        self.created = datetime.now(tz=None)
+        self.created = datetime.now()
 
     def is_active(self) -> bool:
-        return datetime.now(tz=None) < self.created + self.deadline
+        return datetime.now() < self.created + self.deadline
 
 
 class Person:
@@ -84,7 +84,7 @@ class HomeworkResult:
         self.author = author
         self.homework = homework
         self.solution = solution
-        self.created = datetime.now(tz=None)
+        self.created = datetime.now()
 
 
 class DeadlineError(Exception):
@@ -94,7 +94,7 @@ class DeadlineError(Exception):
 
 
 class Teacher(Person):
-    homework_done = defaultdict()
+    homework_done = defaultdict(list)
 
     @staticmethod
     def create_homework(hw_text: str, days_for_hw: int) -> Homework:
@@ -102,16 +102,18 @@ class Teacher(Person):
 
     @staticmethod
     def check_homework(hw_result: HomeworkResult) -> bool:
-        if len(hw_result.solution) > 5:
-            Teacher.homework_done[hw_result.homework] = hw_result.solution
-            return True
-        return False
+        if len(hw_result.solution) < 5:
+            return False
+        if hw_result.solution not in Teacher.homework_done[hw_result.homework]:
+            Teacher.homework_done[hw_result.homework].append(hw_result.solution)
+        return True
 
+    @staticmethod
     def reset_results(homework=None):
         if homework is None:
-            Teacher.homework_done = defaultdict()
+            Teacher.homework_done = defaultdict(list)
         else:
-            Teacher.homework_done[homework] = None
+            Teacher.homework_done[homework] = []
 
 
 if __name__ == "__main__":

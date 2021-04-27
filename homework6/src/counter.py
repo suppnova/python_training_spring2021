@@ -14,16 +14,24 @@ def instances_counter(some_cls):
     class InstCounter(some_cls):
         inst_counter = 0
 
+        @classmethod
+        def init_counter(cls):
+            if "inst_counter" not in cls.__dict__:
+                cls.inst_counter = 0
+
         def __init__(self, *args, **kwargs):
+            self.init_counter()
             super().__init__(*args, **kwargs)
-            InstCounter.inst_counter += 1
+            self.__class__.inst_counter += 1
 
         @classmethod
         def get_created_instances(cls):
+            cls.init_counter()
             return cls.inst_counter
 
         @classmethod
         def reset_instances_counter(cls):
+            cls.init_counter()
             total_objects = cls.inst_counter
             cls.inst_counter = 0
             return total_objects
