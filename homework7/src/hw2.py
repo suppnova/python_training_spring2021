@@ -34,7 +34,7 @@ def chars_generator(string: str) -> Generator[str, None, None]:
 
 
 def backspace_compare(first: str, second: str) -> bool:
-    for fi, sec in zip_longest(chars_generator(first), chars_generator(second)):
-        if fi != sec:
-            return False
-    return True
+    return all(
+        fi == sec
+        for fi, sec in zip_longest(chars_generator(first), chars_generator(second))
+    )
