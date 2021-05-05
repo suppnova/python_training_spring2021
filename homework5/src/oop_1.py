@@ -44,10 +44,10 @@ class Homework:
     def __init__(self, text: str, deadline: timedelta):
         self.text = text
         self.deadline = deadline
-        self.created = datetime.now(tz=None)
+        self.created = datetime.now()
 
     def is_active(self) -> bool:
-        return datetime.now(tz=None) < self.created + self.deadline
+        return datetime.now() < self.created + self.deadline
 
 
 class Student:
@@ -55,11 +55,11 @@ class Student:
         self.last_name = last_name
         self.first_name = first_name
 
-    def do_homework(self, hw: Homework):
+    @classmethod
+    def do_homework(cls, hw: Homework):
         if hw.is_active():
             return hw
         print("You are late")
-        return None
 
 
 class Teacher:
@@ -67,7 +67,8 @@ class Teacher:
         self.last_name = last_name
         self.first_name = first_name
 
-    def create_homework(self, hw_text: str, days_for_hw: int):
+    @classmethod
+    def create_homework(cls, hw_text: str, days_for_hw: int):
         return Homework(hw_text, timedelta(days=days_for_hw))
 
 
